@@ -9,6 +9,8 @@ import { Component } from '@angular/core';
 export class BookListComponent {
   bildBreite = 50;
 
+  filterText = '';
+
   coverIsVisible = true;
 
   public books =  [
