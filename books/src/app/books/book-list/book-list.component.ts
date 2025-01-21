@@ -13,7 +13,9 @@ export class BookListComponent {
     {isbn: '1234567892', title: 'Buch3', price: 30}
   ];
 
-
+  trackByBook(index: number, book: any) {
+    return book.isbn;
+  }
 
   public autos = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 }
