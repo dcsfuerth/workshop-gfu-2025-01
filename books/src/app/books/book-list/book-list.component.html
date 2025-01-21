@@ -2,7 +2,7 @@
 
 <p *ngIf="books.length===0">Es gibt noch keine Bücher</p>
 
-<button (click)="toggleCover()">Cover ein/ausblenden</button>
+<button (click)="toggleCover()">Cover {{coverIsVisible ? 'aus' : 'ein'}}blenden</button>
 
 @if (books.length>0) {
   <table border="1" style="width: 100%">
