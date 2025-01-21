@@ -1,3 +1,5 @@
+<!-- {{books | json}} -->
+
 <p>Die Liste unserer Bücher gefiltert nach {{filterText}}</p>
 
 <p *ngIf="books.length===0">Es gibt noch keine Bücher</p>
@@ -17,11 +19,11 @@
       <td>Preis</td>
       <td></td>
     </tr>
-    <tr *ngFor="let book of books; let i = index; trackBy: trackByBook">
+    <tr *ngFor="let book of (books | bookFilter:filterText); let i = index; trackBy: trackByBook">
       <td>{{i+1}}</td>
       <td>{{book.isbn}}</td>
       <td>{{book.title}}</td>
-      <td [ngClass]="{'on-discount': book.price < 20, 'teuer': book.price >=30}">{{book.price}}</td>
+      <td [ngClass]="{'on-discount': book.price < 20, 'teuer': book.price >=30}">{{book.price  | currency:'EUR':'symbol':'1.2-2'}}</td>
       <td><img *ngIf="coverIsVisible" [src]="book.coverUrl" [style.width.px]="bildBreite"   ></td>
     </tr>
   </table>

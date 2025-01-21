@@ -13,7 +13,7 @@ export class CalculatorComponentComponent {
   public result: number = 0;
 
   public addieren() {
-    this.result = +this.x + +this.y;
+    this.result = +this.x + +this.y;  // parseInt(this.x) + parseInt(this.y)
   }
 
   public subtrahieren() {

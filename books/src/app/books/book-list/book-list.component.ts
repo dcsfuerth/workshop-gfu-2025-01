@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { Book } from '../book';
 
 @Component({
   selector: 'books-list',
@@ -6,14 +7,31 @@ import { Component } from '@angular/core';
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.css'
 })
-export class BookListComponent {
+export class BookListComponent implements OnInit, OnChanges , OnDestroy {
   bildBreite = 50;
 
   filterText = '';
 
   coverIsVisible = true;
 
-  public books =  [
+  constructor() {
+    console.log('constructor');
+  }
+
+  ngOnInit() {
+    console.log('ngOnInit');
+    // ....
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('ngOnChanges', changes);
+  }
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy');
+  }
+
+  public books: Book[] =  [
     {isbn: '1234567890', title: 'Buch1', price: 10, coverUrl:'https://m.media-amazon.com/images/I/71Wv+d6oP6L._AC_UY218_.jpg'},
     {isbn: '1234567891', title: 'Buch2', price: 20, coverUrl:'https://m.media-amazon.com/images/I/71wlgd2ShsL._AC_UY218_.jpg'},
     {isbn: '1234567892', title: 'Buch3', price: 30, coverUrl:'https://m.media-amazon.com/images/I/61l7nyf3OmL._AC_UY218_.jpg'},
