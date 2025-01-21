@@ -1,0 +1,12 @@
+<p>Taschenrechner</p>
+
+<p>x: <input type="number" [(ngModel)]="x" /></p>
+<p>y: <input type="number" [(ngModel)]="y" /></p>
+
+<p>
+  <button (click)="addieren()">+</button>
+  <button (click)="subtrahieren()">-</button>
+  <button (click)="clear()">clear</button>
+</p>
+
+<p>Ergebnis: {{ result }}</p>

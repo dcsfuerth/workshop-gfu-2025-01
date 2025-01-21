@@ -4,11 +4,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookListComponent } from './books/book-list/book-list.component';
 import { FormsModule } from "@angular/forms";
+import { CalculatorComponentComponent } from './shared/calculator-component/calculator-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookListComponent
+    BookListComponent,
+    CalculatorComponentComponent
   ],
   imports: [
     BrowserModule,
