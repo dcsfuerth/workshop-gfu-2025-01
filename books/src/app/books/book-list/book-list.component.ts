@@ -32,9 +32,9 @@ export class BookListComponent implements OnInit, OnChanges , OnDestroy {
   }
 
   public books: Book[] =  [
-    {isbn: '1234567890', title: 'Buch1', price: 10, coverUrl:'https://m.media-amazon.com/images/I/71Wv+d6oP6L._AC_UY218_.jpg'},
-    {isbn: '1234567891', title: 'Buch2', price: 20, coverUrl:'https://m.media-amazon.com/images/I/71wlgd2ShsL._AC_UY218_.jpg'},
-    {isbn: '1234567892', title: 'Buch3', price: 30, coverUrl:'https://m.media-amazon.com/images/I/61l7nyf3OmL._AC_UY218_.jpg'},
+    {isbn: '1234567890', title: 'Angular 16', price: 10, coverUrl:'https://m.media-amazon.com/images/I/71Wv+d6oP6L._AC_UY218_.jpg'},
+    {isbn: '1234567891', title: 'React 18', price: 20, coverUrl:'https://m.media-amazon.com/images/I/71wlgd2ShsL._AC_UY218_.jpg'},
+    {isbn: '1234567892', title: 'Angular 19', price: 30, coverUrl:'https://m.media-amazon.com/images/I/61l7nyf3OmL._AC_UY218_.jpg'},
     ];
 
   trackByBook(index: number, book: any) {

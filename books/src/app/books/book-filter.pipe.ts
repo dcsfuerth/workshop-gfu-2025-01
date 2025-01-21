@@ -14,7 +14,7 @@ export class BookFilterPipe implements PipeTransform {
     }
 
     const searchText = filterText.toLowerCase();
-    const result = books.filter((book) => (book.title || '').toLowerCase().includes(searchText));
+    const result = books.filter((book) => (book.title || '').toLowerCase().includes(searchText) || (book.isbn || '').toLowerCase().includes(searchText));
     return result;
   }
 

@@ -17,7 +17,8 @@
       <td>ISBN</td>
       <td>Titel</td>
       <td>Preis</td>
-      <td></td>
+      <td>Cover</td>
+      <td>Rating</td>
     </tr>
     <tr *ngFor="let book of (books | bookFilter:filterText); let i = index; trackBy: trackByBook">
       <td>{{i+1}}</td>
@@ -25,6 +26,8 @@
       <td>{{book.title}}</td>
       <td [ngClass]="{'on-discount': book.price < 20, 'teuer': book.price >=30}">{{book.price  | currency:'EUR':'symbol':'1.2-2'}}</td>
       <td><img *ngIf="coverIsVisible" [src]="book.coverUrl" [style.width.px]="bildBreite"   ></td>
+      <td>....</td>
+
     </tr>
   </table>
 }
