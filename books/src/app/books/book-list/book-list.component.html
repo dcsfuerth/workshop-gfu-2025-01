@@ -2,6 +2,7 @@
 
 <p *ngIf="books.length===0">Es gibt noch keine Bücher</p>
 
+<button (click)="toggleCover()">Cover ein/ausblenden</button>
 
 @if (books.length>0) {
   <table border="1" style="width: 100%">
@@ -16,8 +17,8 @@
       <td>{{i+1}}</td>
       <td>{{book.isbn}}</td>
       <td>{{book.title}}</td>
-      <td>{{book.price}}</td>
-      <td></td>
+      <td [ngClass]="{'on-discount': book.price < 20, 'teuer': book.price >=30}">{{book.price}}</td>
+      <td><img *ngIf="coverIsVisible" [src]="book.coverUrl" [style.width.px]="bildBreite"   ></td>
     </tr>
   </table>
 }
