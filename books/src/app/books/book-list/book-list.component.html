@@ -1,0 +1,20 @@
+<p>Die Liste unserer Bücher:</p>
+
+<p *ngIf="books.length===0">Es gibt noch keine Bücher</p>
+
+<table *ngIf="books.length>0" border="1" style="width: 100%">
+  <tr>
+    <td>Nr.</td>
+    <td>ISBN</td>
+    <td>Titel</td>
+    <td>Preis</td>
+    <td></td>
+  </tr>
+  <tr *ngFor="let book of books; let i = index; let f = first; let l = last; let e = even; let o = odd;">
+    <td>{{i+1}}</td>
+    <td>{{book.isbn}}</td>
+    <td>{{book.title}}</td>
+    <td>{{book.price}}</td>
+    <td></td>
+  </tr>
+</table>
