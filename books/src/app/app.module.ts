@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BookListComponent } from './books/book-list/book-list.component';
-import { FormsModule } from "@angular/forms";
-import { CalculatorComponentComponent } from './shared/calculator-component/calculator-component.component';
 import { BookFilterPipe } from './books/book-filter.pipe';
+import { BookListComponent } from './books/book-list/book-list.component';
+import { CalculatorComponentComponent } from './shared/calculator-component/calculator-component.component';
 import { RatingComponent } from './shared/rating/rating.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +19,8 @@ import { RatingComponent } from './shared/rating/rating.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
