@@ -26,7 +26,13 @@
       <td>{{book.title}}</td>
       <td [ngClass]="{'on-discount': book.price < 20, 'teuer': book.price >=30}">{{book.price  | currency:'EUR':'symbol':'1.2-2'}}</td>
       <td><img *ngIf="coverIsVisible" [src]="book.coverUrl" [style.width.px]="bildBreite"   ></td>
-      <td>....</td>
+      <td>
+        <rating
+          [id]="book.isbn"
+          [stars]="book.rating"
+          (upvoteHappened)="upvote($event)"
+          (downvoteHappened)="downvote($event)"></rating>
+      </td>
 
     </tr>
   </table>

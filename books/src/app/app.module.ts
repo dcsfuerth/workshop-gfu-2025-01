@@ -6,13 +6,15 @@ import { BookListComponent } from './books/book-list/book-list.component';
 import { FormsModule } from "@angular/forms";
 import { CalculatorComponentComponent } from './shared/calculator-component/calculator-component.component';
 import { BookFilterPipe } from './books/book-filter.pipe';
+import { RatingComponent } from './shared/rating/rating.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookListComponent,
     CalculatorComponentComponent,
-    BookFilterPipe
+    BookFilterPipe,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
