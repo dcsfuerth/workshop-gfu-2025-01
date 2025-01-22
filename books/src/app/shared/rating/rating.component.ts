@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'rating',
@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
   templateUrl: './rating.component.html',
   styleUrl: './rating.component.css',
 })
-export class RatingComponent implements OnInit, OnChanges {
+export class RatingComponent implements OnInit, OnChanges, OnDestroy {
   @Input() id: string = '';
   @Input() stars: number = 0;
 
@@ -25,6 +25,9 @@ export class RatingComponent implements OnInit, OnChanges {
 
   constructor() {
     console.log('RatingComponent.constructor');
+  }
+  ngOnDestroy(): void {
+    console.log('RatingComponent.ngOnDestroy', this.id);
   }
 
   ngOnInit(): void {

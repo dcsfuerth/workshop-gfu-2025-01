@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { Book } from '../book';
+import { BookDataService } from '../book-data.service';
 
 @Component({
   selector: 'books-list',
@@ -15,13 +16,15 @@ export class BookListComponent implements OnInit, OnChanges , OnDestroy {
 
   coverIsVisible = true;
 
-  constructor() {
+  books: Book[] = [];
+
+  constructor(private bookDataService: BookDataService) {
     console.log('constructor');
   }
 
   ngOnInit() {
     console.log('ngOnInit');
-    // ....
+    this.books = this.bookDataService.getBooks();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -31,12 +34,6 @@ export class BookListComponent implements OnInit, OnChanges , OnDestroy {
   ngOnDestroy() {
     console.log('ngOnDestroy');
   }
-
-  public books: Book[] =  [
-    {isbn: '1234567890', title: 'Angular 16', price: 10, coverUrl:'https://m.media-amazon.com/images/I/71Wv+d6oP6L._AC_UY218_.jpg', rating: 4.2},
-    {isbn: '1234567891', title: 'React 18', price: 20, coverUrl:'https://m.media-amazon.com/images/I/71wlgd2ShsL._AC_UY218_.jpg', rating: 3.5},
-    {isbn: '1234567892', title: 'Angular 19', price: 30, coverUrl:'https://m.media-amazon.com/images/I/61l7nyf3OmL._AC_UY218_.jpg', rating: 4.9},
-    ];
 
   trackByBook(index: number, book: any) {
     return book.isbn;
@@ -53,6 +50,7 @@ export class BookListComponent implements OnInit, OnChanges , OnDestroy {
     const book = this.books.find(b => b.isbn === isbn);
     if (book) {
       book.rating = Math.min(5, book.rating + 0.1);
+      this.bookDataService.updateBook(book);
     }
   }
   downvote(isbn: string) {
@@ -60,6 +58,7 @@ export class BookListComponent implements OnInit, OnChanges , OnDestroy {
     const book = this.books.find(b => b.isbn === isbn);
     if (book) {
       book.rating = Math.max(1, book.rating - 0.1);
+      this.bookDataService.updateBook(book);
     }
   }
 
