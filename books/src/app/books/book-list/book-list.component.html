@@ -1,41 +1,58 @@
 <!-- {{books | json}} -->
 
-<p>Die Liste unserer Bücher gefiltert nach {{filterText}}</p>
+<p>Die Liste unserer Bücher gefiltert nach {{ filterText }}</p>
 
-<p *ngIf="books.length===0">Es gibt noch keine Bücher</p>
+<p *ngIf="books.length === 0">Es gibt noch keine Bücher</p>
 
-<button (click)="toggleCover()">Cover {{coverIsVisible ? 'aus' : 'ein'}}blenden</button>
+<button (click)="toggleCover()">
+  Cover {{ coverIsVisible ? "aus" : "ein" }}blenden
+</button>
 
-<p>
-<p>Filter nach: <input type="text" [(ngModel)]="filterText">
-</p>
+<p></p>
+<p>Filter nach: <input type="text" [(ngModel)]="filterText" /></p>
 
 @if (books.length>0) {
-  <table border="1" style="width: 100%">
-    <tr>
-      <td>Nr.</td>
-      <td>ISBN</td>
-      <td>Titel</td>
-      <td>Preis</td>
-      <td>Cover</td>
-      <td>Rating</td>
-    </tr>
-    <tr *ngFor="let book of (books | bookFilter:filterText); let i = index; trackBy: trackByBook">
-      <td>{{i+1}}</td>
-      <td>{{book.isbn}}</td>
-      <td>{{book.title}}</td>
-      <td [ngClass]="{'on-discount': book.price < 20, 'teuer': book.price >=30}">{{book.price  | currency:'EUR':'symbol':'1.2-2'}}</td>
-      <td><img *ngIf="coverIsVisible" [src]="book.coverUrl" [style.width.px]="bildBreite"   ></td>
-      <td>
-        <rating
-          [id]="book.isbn"
-          [stars]="book.rating"
-          (upvoteHappened)="upvote($event)"
-          (downvoteHappened)="downvote($event)"></rating>
-      </td>
-
-    </tr>
-  </table>
+<table border="1" style="width: 100%">
+  <tr>
+    <td>Nr.</td>
+    <td>ISBN</td>
+    <td>Titel</td>
+    <td>Preis</td>
+    <td>Cover</td>
+    <td>Rating</td>
+  </tr>
+  <tr
+    *ngFor="
+      let book of books | bookFilter : filterText;
+      let i = index;
+      trackBy: trackByBook
+    "
+  >
+    <td>{{ i + 1 }}</td>
+    <td>
+      <a [routerLink]="['/books', book.isbn]">{{ book.isbn }}</a>
+    </td>
+    <td>{{ book.title }}</td>
+    <td [ngClass]="{ 'on-discount': book.price < 20, teuer: book.price >= 30 }">
+      {{ book.price | currency : "EUR" : "symbol" : "1.2-2" }}
+    </td>
+    <td>
+      <img
+        *ngIf="coverIsVisible"
+        [src]="book.coverUrl"
+        [style.width.px]="bildBreite"
+      />
+    </td>
+    <td>
+      <rating
+        [id]="book.isbn"
+        [stars]="book.rating"
+        (upvoteHappened)="upvote($event)"
+        (downvoteHappened)="downvote($event)"
+      ></rating>
+    </td>
+  </tr>
+</table>
 } @else {
-  <p>Bücher werden geladen...</p>
+<p>Bücher werden geladen...</p>
 }

@@ -1,1 +1,7 @@
 <p>book-detail works!</p>
+
+@if (book){
+<p>{{ book | json }}</p>
+} @else {
+<p>Kein Buch mit der ISBN {{ isbn }} gefunden</p>
+}

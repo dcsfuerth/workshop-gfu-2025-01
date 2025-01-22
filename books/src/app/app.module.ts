@@ -10,6 +10,7 @@ import { RatingComponent } from './shared/rating/rating.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WelcomeComponent } from './books/welcome/welcome.component';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { BookDetailComponent } from './books/book-detail/book-detail.component';
     BookFilterPipe,
     RatingComponent,
     WelcomeComponent,
-    BookDetailComponent
+    BookDetailComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

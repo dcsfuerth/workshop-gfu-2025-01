@@ -10,7 +10,6 @@ import { Book } from '../book';
 import { BookDataService } from '../book-data.service';
 
 @Component({
-  selector: 'books-list',
   standalone: false,
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.css',
