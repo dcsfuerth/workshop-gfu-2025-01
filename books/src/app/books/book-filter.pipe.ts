@@ -3,19 +3,20 @@ import { Book } from './book';
 
 @Pipe({
   name: 'bookFilter',
-  standalone: false
+  standalone: false,
 })
 export class BookFilterPipe implements PipeTransform {
-
-  transform(books: Book[] = [], filterText : string = ''): Book[] {
-
+  transform(books: Book[] = [], filterText: string = ''): Book[] {
     if (!filterText || books.length === 0) {
-      return books;
+      return books || [];
     }
 
     const searchText = filterText.toLowerCase();
-    const result = books.filter((book) => (book.title || '').toLowerCase().includes(searchText) || (book.isbn || '').toLowerCase().includes(searchText));
+    const result = books.filter(
+      (book) =>
+        (book.title || '').toLowerCase().includes(searchText) ||
+        (book.isbn || '').toLowerCase().includes(searchText)
+    );
     return result;
   }
-
 }
