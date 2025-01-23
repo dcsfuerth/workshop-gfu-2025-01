@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'rating',
@@ -8,24 +17,22 @@ import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, S
   styleUrl: './rating.component.css',
 })
 export class RatingComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() id: string = '';
-  @Input() stars: number = 0;
+  @Input()
+  id: string = '';
 
-  @Output() upvoteHappened = new EventEmitter<string>();
-  @Output() downvoteHappened = new EventEmitter<string>();
+  @Input()
+  stars: number = 0;
 
-  upvote() {
-    console.log('RatingComponentupvote', this.id);
-    this.upvoteHappened.emit(this.id);
-  }
-  downvote() {
-    console.log('RatingComponent.downvote', this.id);
-    this.downvoteHappened.emit(this.id);
-  }
+  @Output()
+  upvoteHappened = new EventEmitter<string>();
+
+  @Output()
+  downvoteHappened = new EventEmitter<string>();
 
   constructor() {
     console.log('RatingComponent.constructor');
   }
+  
   ngOnDestroy(): void {
     console.log('RatingComponent.ngOnDestroy', this.id);
   }
@@ -38,4 +45,12 @@ export class RatingComponent implements OnInit, OnChanges, OnDestroy {
     console.log('RatingComponent.ngOnChanges', this.id, changes);
   }
 
+  upvote() {
+    console.log('RatingComponentupvote', this.id);
+    this.upvoteHappened.emit(this.id);
+  }
+  downvote() {
+    console.log('RatingComponent.downvote', this.id);
+    this.downvoteHappened.emit(this.id);
+  }
 }

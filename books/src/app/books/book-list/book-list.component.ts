@@ -4,10 +4,10 @@ import {
   OnDestroy,
   OnInit,
   SimpleChanges,
-  ViewEncapsulation,
 } from '@angular/core';
 import { Book } from '../book';
 import { BookDataService } from '../book-data.service';
+import { Observable, of } from 'rxjs';
 
 @Component({
   standalone: false,
@@ -23,27 +23,21 @@ export class BookListComponent implements OnInit, OnChanges, OnDestroy {
 
   books: Book[] = [];
 
+  // books2: Observable<Book[]> = of([]);
+
   seitenIndex = 0;
   seitenLaenge = 2;
 
   constructor(private bookDataService: BookDataService) {
-    console.log('constructor');
+    console.log('BookListComponent.constructor');
   }
 
   async ngOnInit() {
-    // console.log('ngOnInit');
-    // this.bookDataService.getBooksAsObservable().subscribe((books) => {
-    //   this.books = books;
-    //   console.log('books1', this.books.length);
-    // });
-
-    // console.log('books2', this.books.length);
-
-    // this.bookDataService.getBooksAsPromise().then((books) => this.books = books);
-
     const ergebnis = await this.bookDataService.getBooks();
     this.books = ergebnis;
     console.log('books3', this.books.length);
+
+    // this.books2 = this.bookDataService.getBooksAsObservable();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -51,7 +45,7 @@ export class BookListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('ngOnDestroy');
+    console.log('BookListComponent.ngOnDestroy');
   }
 
   trackByBook(index: number, book: any) {
@@ -61,50 +55,22 @@ export class BookListComponent implements OnInit, OnChanges, OnDestroy {
   toggleCover() {
     this.coverIsVisible = !this.coverIsVisible;
   }
-  public autos = [
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'h',
-    'i',
-    'j',
-    'k',
-    'l',
-    'm',
-    'n',
-    'o',
-    'p',
-    'q',
-    'r',
-    's',
-    't',
-    'u',
-    'v',
-    'w',
-    'x',
-    'y',
-    'z',
-  ];
 
-  upvote(isbn: string) {
+  async upvote(isbn: string) {
     console.log('BookListComponent.upvote', { isbn });
 
     const book = this.books.find((b) => b.isbn === isbn);
     if (book) {
       book.rating = Math.min(5, book.rating + 0.1);
-      this.bookDataService.updateBook(book);
+      await this.bookDataService.updateBook(book);
     }
   }
-  downvote(isbn: string) {
+  async downvote(isbn: string) {
     console.log('BookListComponent.downvote', { isbn });
     const book = this.books.find((b) => b.isbn === isbn);
     if (book) {
       book.rating = Math.max(1, book.rating - 0.1);
-      this.bookDataService.updateBook(book);
+      await this.bookDataService.updateBook(book);
     }
   }
 

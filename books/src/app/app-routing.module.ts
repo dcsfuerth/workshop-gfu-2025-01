@@ -5,6 +5,7 @@ import { BookListComponent } from './books/book-list/book-list.component';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { bookGuard } from './books/book.guard';
+import { bookExitGuard } from './books/book-exit.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
     path: 'books/:isbn',
     component: BookDetailComponent,
     canActivate: [bookGuard],
+    canDeactivate: [bookExitGuard],
   },
   { path: '**', component: NotFoundComponent },
 ];

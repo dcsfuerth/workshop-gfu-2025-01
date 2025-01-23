@@ -1,17 +1,17 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { BookFilterPipe } from './books/book-filter.pipe';
 import { BookListComponent } from './books/book-list/book-list.component';
-import { CalculatorComponentComponent } from './shared/calculator-component/calculator-component.component';
-import { RatingComponent } from './shared/rating/rating.component';
-import { HttpClientModule } from '@angular/common/http';
-import { WelcomeComponent } from './books/welcome/welcome.component';
-import { BookDetailComponent } from './books/book-detail/book-detail.component';
-import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { TestPipe } from './books/test.pipe';
+import { WelcomeComponent } from './books/welcome/welcome.component';
+import { CalculatorComponentComponent } from './shared/calculator-component/calculator-component.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { RatingComponent } from './shared/rating/rating.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,15 +22,10 @@ import { TestPipe } from './books/test.pipe';
     WelcomeComponent,
     BookDetailComponent,
     NotFoundComponent,
-    TestPipe
+    TestPipe,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
