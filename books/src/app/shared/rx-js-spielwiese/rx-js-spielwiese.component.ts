@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { filter, map, of, Subject, timer } from 'rxjs';
+import { BehaviorSubject, filter, map, of, Subject, timer } from 'rxjs';
 
 @Component({
   standalone: false,
@@ -18,15 +18,18 @@ export class RxJsSpielwieseComponent implements OnInit {
 
     this.obsEuro$.subscribe(console.log);
 
-    const mySubject$ = new Subject();
-    mySubject$.next('Jemand zuhause?');
+    const mySubject$ = new BehaviorSubject('Jemand zuhause?');
+
+
+
     mySubject$.subscribe((e) => console.log('Zuhörer 1', e));
+    mySubject$.next('klar');
     mySubject$.subscribe((e) => console.log('Zuhörer 2', e));
     mySubject$.next('Hallo');
     mySubject$.next('Welt :-) ');
 
     this.obsEuro$.subscribe((data) => {
-      mySubject$.next(data);
+      mySubject$.next('' + data);
     });
   }
 }
