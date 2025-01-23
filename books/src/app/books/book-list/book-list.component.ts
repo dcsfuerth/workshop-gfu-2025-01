@@ -23,6 +23,9 @@ export class BookListComponent implements OnInit, OnChanges, OnDestroy {
 
   books: Book[] = [];
 
+  seitenIndex = 0;
+  seitenLaenge = 2;
+
   constructor(private bookDataService: BookDataService) {
     console.log('constructor');
   }
@@ -102,6 +105,17 @@ export class BookListComponent implements OnInit, OnChanges, OnDestroy {
     if (book) {
       book.rating = Math.max(1, book.rating - 0.1);
       this.bookDataService.updateBook(book);
+    }
+  }
+
+  naechsteSeite() {
+    this.seitenIndex++;
+  }
+  vorherigeSeite() {
+    this.seitenIndex--;
+
+    if (this.seitenIndex < 0) {
+      this.seitenIndex = 0;
     }
   }
 }

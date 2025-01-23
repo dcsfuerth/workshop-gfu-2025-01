@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { WelcomeComponent } from './books/welcome/welcome.component';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { TestPipe } from './books/test.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     RatingComponent,
     WelcomeComponent,
     BookDetailComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TestPipe
   ],
   imports: [
     BrowserModule,

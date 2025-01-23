@@ -1,4 +1,6 @@
-<!-- {{books | json}} -->
+<!-- {{ books }}
+
+{{ books | json }} -->
 
 <p>Die Liste unserer Bücher gefiltert nach {{ filterText }}</p>
 
@@ -21,9 +23,11 @@
     <td>Cover</td>
     <td>Rating</td>
   </tr>
+  <!-- <tr *ngFor="let book of (books | bookFilter : filterText); let i = index; trackBy: trackByBook"> -->
   <tr
     *ngFor="
-      let book of books | bookFilter : filterText;
+      let book of books
+        | slice : seitenIndex * seitenLaenge : (seitenIndex + 1) * seitenLaenge;
       let i = index;
       trackBy: trackByBook
     "
@@ -56,3 +60,10 @@
 } @else {
 <p>Bücher werden geladen...</p>
 }
+
+<p>
+  Aktuelle Seite: {{ seitenIndex + 1 }} /
+  {{ books.length / seitenLaenge | number : "1.0-0" }}
+  <button (click)="naechsteSeite()">Nächste Seite</button>
+  <button (click)="vorherigeSeite()">Vorherige Seite</button>
+</p>

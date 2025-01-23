@@ -17,6 +17,7 @@ export class BookFilterPipe implements PipeTransform {
         (book.title || '').toLowerCase().includes(searchText) ||
         (book.isbn || '').toLowerCase().includes(searchText)
     );
+
     return result;
   }
 }
