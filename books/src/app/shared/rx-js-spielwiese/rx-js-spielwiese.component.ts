@@ -7,6 +7,7 @@ import {
   ReplaySubject,
   Subject,
   Subscription,
+  takeUntil,
   timer,
 } from 'rxjs';
 
@@ -20,10 +21,13 @@ export class RxJsSpielwieseComponent implements OnInit, OnDestroy {
   obsEuro$ = of(0);
   mySubscriptions: Subscription[] = [];
 
+  destroy$ = new Subject();
+
   ngOnInit() {
     this.obsEuro$ = this.obsCent$.pipe(
       filter((cent: number) => cent % 10 === 0),
-      map((cent) => (cent + 0.0) / 100)
+      map((cent) => (cent + 0.0) / 100),
+      takeUntil(this.destroy$)
     );
 
     this.mySubscriptions.push(this.obsEuro$.subscribe(console.log));
@@ -42,6 +46,8 @@ export class RxJsSpielwieseComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.mySubscriptions.forEach((sub) => sub?.unsubscribe());
+    // this.mySubscriptions.forEach((sub) => sub?.unsubscribe());
+
+    this.destroy$.next('bumm');
   }
 }
