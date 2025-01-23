@@ -6,6 +6,7 @@ import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { bookGuard } from './books/book.guard';
 import { bookExitGuard } from './books/book-exit.guard';
+import { RxJsSpielwieseComponent } from './shared/rx-js-spielwiese/rx-js-spielwiese.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -17,6 +18,8 @@ const routes: Routes = [
     canActivate: [bookGuard],
     canDeactivate: [bookExitGuard],
   },
+  { path: 'rx-js-spielwiese', component: RxJsSpielwieseComponent },
+
   { path: '**', component: NotFoundComponent },
 ];
 

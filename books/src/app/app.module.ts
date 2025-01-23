@@ -12,6 +12,7 @@ import { WelcomeComponent } from './books/welcome/welcome.component';
 import { CalculatorComponentComponent } from './shared/calculator-component/calculator-component.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { RatingComponent } from './shared/rating/rating.component';
+import { RxJsSpielwieseComponent } from './shared/rx-js-spielwiese/rx-js-spielwiese.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { RatingComponent } from './shared/rating/rating.component';
     BookDetailComponent,
     NotFoundComponent,
     TestPipe,
+    RxJsSpielwieseComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
