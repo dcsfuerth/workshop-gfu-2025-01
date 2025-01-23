@@ -1,14 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, filter, map, of, Subject, timer } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  BehaviorSubject,
+  filter,
+  map,
+  of,
+  ReplaySubject,
+  Subject,
+  Subscription,
+  timer,
+} from 'rxjs';
 
 @Component({
   standalone: false,
   templateUrl: './rx-js-spielwiese.component.html',
   styleUrl: './rx-js-spielwiese.component.css',
 })
-export class RxJsSpielwieseComponent implements OnInit {
+export class RxJsSpielwieseComponent implements OnInit, OnDestroy {
   obsCent$ = timer(0, 1000);
   obsEuro$ = of(0);
+  mySubscription: Subscription | null = null;
+  mySubscription2: Subscription | null = null;
 
   ngOnInit() {
     this.obsEuro$ = this.obsCent$.pipe(
@@ -16,20 +27,24 @@ export class RxJsSpielwieseComponent implements OnInit {
       map((cent) => (cent + 0.0) / 100)
     );
 
-    this.obsEuro$.subscribe(console.log);
+    this.mySubscription = this.obsEuro$.subscribe(console.log);
 
-    const mySubject$ = new BehaviorSubject('Jemand zuhause?');
-
-
-
-    mySubject$.subscribe((e) => console.log('Zuhörer 1', e));
-    mySubject$.next('klar');
-    mySubject$.subscribe((e) => console.log('Zuhörer 2', e));
+    const mySubject$ = new ReplaySubject(10);
     mySubject$.next('Hallo');
+    mySubject$.subscribe((e) => console.log('Zuhörer 1', e));
+    mySubject$.subscribe((e) => console.log('Zuhörer 2', e));
     mySubject$.next('Welt :-) ');
 
-    this.obsEuro$.subscribe((data) => {
+    this.mySubscription2 = this.obsEuro$.subscribe((data) => {
       mySubject$.next('' + data);
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
+
+    this.mySubscription2?.unsubscribe();
   }
 }
