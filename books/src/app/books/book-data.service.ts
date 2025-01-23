@@ -45,7 +45,7 @@ export class BookDataService {
     return firstValueFrom(this.getBooksAsObservable());
   }
 
-  private getBookAsObservable(isbn: string): Observable<Book> {
+  getBookAsObservable(isbn: string): Observable<Book> {
     return this.http.get<Book>(`http://localhost:3000/books/${isbn}`);
   }
 
