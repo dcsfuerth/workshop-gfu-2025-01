@@ -29,6 +29,7 @@
   <tr
     *ngFor="
       let book of books
+        | bookFilter : filterText
         | slice : seitenIndex * seitenLaenge : (seitenIndex + 1) * seitenLaenge;
       let i = index;
       trackBy: trackByBook
