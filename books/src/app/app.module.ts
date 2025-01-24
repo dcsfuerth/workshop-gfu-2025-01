@@ -13,6 +13,11 @@ import { CalculatorComponentComponent } from './shared/calculator-component/calc
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { RatingComponent } from './shared/rating/rating.component';
 import { RxJsSpielwieseComponent } from './shared/rx-js-spielwiese/rx-js-spielwiese.component';
+import { StoreModule } from '@ngrx/store';
+import {
+  counterReducer,
+  NgrxSpielwieseComponent,
+} from './shared/ngrx-spielwiese/ngrx-spielwiese.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,8 +30,15 @@ import { RxJsSpielwieseComponent } from './shared/rx-js-spielwiese/rx-js-spielwi
     NotFoundComponent,
     TestPipe,
     RxJsSpielwieseComponent,
+    NgrxSpielwieseComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    StoreModule.forRoot({ count: counterReducer }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
