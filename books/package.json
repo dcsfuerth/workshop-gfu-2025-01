@@ -6,8 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "jest",
-    "db:mock": "json-server -w -i isbn --delay 1000 ./src/data/db.json"
+    "db:mock": "json-server -w -i isbn --delay 1000 ./src/data/db.json",
+    "test": "jest --verbose",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "private": true,
   "dependencies": {

@@ -23,8 +23,6 @@ export class BookListComponent implements OnInit, OnChanges, OnDestroy {
 
   books: Book[] = [];
 
-  // books2: Observable<Book[]> = of([]);
-
   seitenIndex = 0;
   seitenLaenge = 2;
 

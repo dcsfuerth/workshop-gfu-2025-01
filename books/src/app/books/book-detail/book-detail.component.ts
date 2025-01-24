@@ -20,12 +20,6 @@ export class BookDetailComponent implements OnInit {
   }
 
   async ngOnInit() {
-    // this.bookObservable = this.route.params.pipe(
-    //   mergeMap((params) =>
-    //     this.bookDataService.getBookAsObservable(params['isbn'])
-    //   )
-    // );
-
     this.bookObservable = this.route.params.pipe(
       concatMap((params) =>
         this.bookDataService.getBookAsObservable(params['isbn'])
