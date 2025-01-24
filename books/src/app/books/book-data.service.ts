@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Book } from './book';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom, Observable } from 'rxjs';
+import { firstValueFrom, Observable, ReplaySubject } from 'rxjs';
 import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class BookDataService {
+  public bestellungen: ReplaySubject<Book> = new ReplaySubject<Book>(100);
+
   constructor(private http: HttpClient) {
     console.log('BookDataService.constructor');
   }

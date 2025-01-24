@@ -12,6 +12,7 @@ import { concatMap, map, mergeAll, mergeMap, Observable, of } from 'rxjs';
 export class BookDetailComponent implements OnInit {
   bookObservable: Observable<Book | null> = of(null);
 
+  aktuellesBuch: Book | null = null;
   constructor(
     private bookDataService: BookDataService,
     private route: ActivatedRoute
@@ -31,5 +32,15 @@ export class BookDetailComponent implements OnInit {
         this.bookDataService.getBookAsObservable(params['isbn'])
       )
     );
+
+    this.bookObservable.subscribe((book) => {
+      this.aktuellesBuch = book;
+    });
+  }
+
+  bestellen() {
+    if (this.aktuellesBuch) {
+      this.bookDataService.bestellungen.next(this.aktuellesBuch);
+    }
   }
 }

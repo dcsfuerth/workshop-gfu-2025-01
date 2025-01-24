@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Book } from '../book';
 import { BookDataService } from '../book-data.service';
-import { Observable, of } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   standalone: false,
@@ -25,6 +25,8 @@ export class BookListComponent implements OnInit, OnChanges, OnDestroy {
 
   // books2: Observable<Book[]> = of([]);
 
+  bestellungsSubscription: Subscription | null = null;
+
   seitenIndex = 0;
   seitenLaenge = 2;
 
@@ -37,7 +39,11 @@ export class BookListComponent implements OnInit, OnChanges, OnDestroy {
     this.books = ergebnis;
     console.log('books3', this.books.length);
 
-    // this.books2 = this.bookDataService.getBooksAsObservable();
+    this.bestellungsSubscription = this.bookDataService.bestellungen.subscribe(
+      (book) => {
+        console.log('BookListComponent.ngOnInit - bestellt wurde', book);
+      }
+    );
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -46,6 +52,7 @@ export class BookListComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy() {
     console.log('BookListComponent.ngOnDestroy');
+    this.bestellungsSubscription?.unsubscribe();
   }
 
   trackByBook(index: number, book: any) {
