@@ -1,1 +1,1 @@
-import 'jest-preset-angular/setup-jest';
+require('jest-preset-angular/setup-jest');
