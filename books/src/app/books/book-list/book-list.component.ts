@@ -59,6 +59,8 @@ export class BookListComponent implements OnInit, OnChanges, OnDestroy {
   async upvote(isbn: string) {
     console.log('BookListComponent.upvote', { isbn });
 
+    // debugger;
+
     const book = this.books.find((b) => b.isbn === isbn);
     if (book) {
       book.rating = Math.min(5, book.rating + 0.1);

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Book } from './book';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, Observable } from 'rxjs';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -24,7 +24,7 @@ export class BookDataService {
     // todo ...
 
     const observable$ = this.http.patch<Book>(
-      `http://localhost:3000/books/${book.isbn}`,
+      `${environment.SERVER_URL}/${book.isbn}`,
       {
         rating: book.rating,
       }
@@ -38,7 +38,7 @@ export class BookDataService {
   // --- interne Hilfsmethoden
 
   getBooksAsObservable(): Observable<Book[]> {
-    return this.http.get<Book[]>('http://localhost:3000/books');
+    return this.http.get<Book[]>(`${environment.SERVER_URL}`);
   }
 
   private getBooksAsPromise(): Promise<Book[]> {
@@ -46,7 +46,7 @@ export class BookDataService {
   }
 
   getBookAsObservable(isbn: string): Observable<Book> {
-    return this.http.get<Book>(`http://localhost:3000/books/${isbn}`);
+    return this.http.get<Book>(`${environment.SERVER_URL}/${isbn}`);
   }
 
   private getBookAsPromise(isbn: string): Promise<Book> {
