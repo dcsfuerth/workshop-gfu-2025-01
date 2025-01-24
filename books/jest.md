@@ -1,17 +1,16 @@
 # was ist Jest?
 
-    •	Testframework  von Facebook, bekannt aus dem React-Ökosystem.
+• Testframework von Facebook, bekannt aus dem React-Ökosystem.
+• Seit Angular 16 als Alternative zu Karma einsetzbar - noch experimentell.
+• Vorteile von Jest:
+• Geschwindigkeit
+• Integrierte Funktionen wie Snapshot-Tests und Code Coverage
+• Headless Testing mit JSDOM: Simuliert die Browser-Umgebung für Tests ohne echten Browser.
 
-- Seit Angular 16 als Alternative zu Karma einsetzbar - noch experimentell.
-  • Vorteile von Jest:
-  • Geschwindigkeit
-  • Integrierte Funktionen wie Snapshot-Tests und Code Coverage
-  • Headless Testing mit JSDOM: Simuliert die Browser-Umgebung für Tests ohne echten Browser.
-
-  • Nachteile von Jest:
-  • Einrichtung komplex
-  • noch experimentelle Unterstützung in Angular
-  • Doku zur Integration
+• Nachteile von Jest:
+• Einrichtung komplex
+• noch experimentelle Unterstützung in Angular
+• Doku zur Integration widersprüchlich
 
 ## Einrichtung von Jest in einem Angular-Projekt
 
